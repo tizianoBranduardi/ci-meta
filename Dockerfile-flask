@@ -1,0 +1,21 @@
+FROM python:3
+
+RUN apt-get update && apt-get install wget -y
+
+WORKDIR /ci-meta
+
+ENV FLASK_APP=app
+
+#ENV FLASK_RUN=0.0.0.0
+
+ENV FLASK_ENV=development
+
+COPY Back-end/ci-meta .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY wsgi.ini .
+
+CMD ["uwsgi", "wsgi.ini"]
+#CMD [ "tail","-f","/dev/null" ]
+#CMD ["flask", "run", "--host", "0.0.0.0"]

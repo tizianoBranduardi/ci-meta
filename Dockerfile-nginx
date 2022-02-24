@@ -1,0 +1,11 @@
+FROM node:latest as build-stage
+WORKDIR /app
+COPY Front-end/ci-meta/package*.json ./
+RUN npm install vue
+RUN npm install
+COPY Front-end/ci-meta/ .
+RUN npm run build
+
+FROM nginx as production-stage
+COPY --from=build-stage /app/dist /app
+COPY nginx.conf /etc/nginx/nginx.conf
