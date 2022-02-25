@@ -4,19 +4,19 @@
       <Login />
     </div>
     <div v-if="this.$store.state.logged">
-      <ListElements />
+      <insert-document />
     </div>
   </div>
 </template>
 
 <script>
-import ListElements from '@/components/List_elements.vue';
 import Login from '@/components/Login.vue';
+import InsertDocument from '../components/InsertDocument.vue';
 
 export default {
   components: {
-    ListElements,
     Login,
+    InsertDocument,
   },
 };
 </script>

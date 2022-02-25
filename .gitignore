@@ -33,3 +33,4 @@ venv
 *.sublime*
 ./__pycache__
 Back-end/database
+start.sh

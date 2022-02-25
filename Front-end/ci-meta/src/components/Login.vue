@@ -22,30 +22,13 @@
           placeholder="Password"
         ></b-form-input>
         <br>
-        <hr>
-        <label class="sr-only" for="address-selector">Indirizzo &nbsp; </label>
-        <b-form-select v-model="address" class="mb-3" id="address-selector">
-          <template #first>
-            <b-form-select-option :value="'localhost'">Local: @localhost</b-form-select-option>
-          </template>
-          <b-form-select-option :value="'101.58.58.9'">Remote: @101.58.58.9</b-form-select-option>
-        </b-form-select>
-        <br>
-        <b-button variant="link" @click="docker = !docker">
-                  Or docker address
-              </b-button>
-        <b-form-input
-          v-model="address"
-          v-show="docker"
-          id="docker-address"
-          type="text"
-          placeholder="Docked flask Address"
-        ></b-form-input>
-        <br>
         <b-button v-on:click.prevent="login()" variant="primary">Login</b-button>
         <br>
         <div class="text-center" style="margin-top: 20px;" v-if="loading">
           <b-spinner variant="primary"></b-spinner>
+        </div>
+        <div class="text-center" style="margin-top: 20px;" v-if="error">
+          Error! Please check your credentials and retry
         </div>
       </b-form>
     </b-card>
@@ -63,7 +46,7 @@
         error: false,
         uname: '',
         pw: '',
-        address: null,
+        address: 'localhost/back-end',
         timeout: false,
         docker: false,
       };
@@ -75,11 +58,18 @@
           const data = { username: this.uname, password: this.pw, provider: 'db' };
           const headers = { 'Content-Type': 'application/json' };
           this.loading=true;
-          const response = await this.$http.post('http://'+this.address+':5000/api/v1/security/login', data, headers);
-          this.loading=false;
-          this.logged = true;
-          this.$store.commit('login', {username: this.uname, token: response.data.access_token, address: this.address});
-          this.$router.push({ name: 'Home'});
+          const response = await this.$http.post('http://'+this.address+'/api/v1/security/login', data, headers);
+          if (response.statusText!='OK'){
+            this.loading=false;
+            this.error=true;
+          }
+          else {
+            this.loading=false;
+            this.logged = true;
+            this.$http.defaults.headers.common['Authorization'] ='Bearer '+response.data.access_token;
+            this.$store.commit('login', {username: this.uname, token: response.data.access_token, address: this.address});
+            this.$router.push({ name: 'Home'});
+          }
         }
         catch (e) {
           console.log(this.address);

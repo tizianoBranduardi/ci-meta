@@ -1,27 +1,26 @@
 <template>
-  <div>
-    
+  <div> 
     <b-container>
       <b-row>
         <b-overlay :show="insertDocType" :opacity="1">
           <div style="display-inline">
             <b-col b-col sm="auto">
-              <strong>Tipologia del documento &emsp;</strong>
+              <strong>Document type &emsp;</strong>
               <b-form-select size="sm" v-model="documentType" :options="this.$store.state.documentType"/>
-              &emsp;oppure
+              &emsp;or
               <b-button variant="link" @click="insertDocType = true">
-                  Crea una nuova tipologia di documento
+                  Create a new type
               </b-button>
             </b-col>
           </div>
           <template #overlay>
             <b-input-group class="mt-3">
-              <b-form-input v-model="newDocumentType" placeholder="Inserisci la nuova tipologia" />
+              <b-form-input v-model="newDocumentType" placeholder="Insert new doc type" />
               <b-input-group-append>
                 <b-button variant="info" @click="insertDocType=false & addNewType()">
-                  Conferma
+                  Update
                 </b-button>
-                <b-button variant="outline-secondary" @click="insertDocType=false">Indietro</b-button>
+                <b-button variant="outline-secondary" @click="insertDocType=false">Back</b-button>
               </b-input-group-append>
             </b-input-group>
           </template>
@@ -43,7 +42,7 @@
     <b-container>
       <b-row>
         <b-col style="display-inline">
-          <strong>Trascrizione &emsp;</strong>
+          <strong>Transcription &emsp;</strong>
           <b-form-textarea
             id="textarea"
             v-model="transcription"
@@ -61,22 +60,22 @@
         <b-overlay :show="insertLanguage" :opacity="1">
           <div style="display-inline">
             <b-col>
-              <strong>Lingua del documento &emsp;</strong>
+              <strong>Document language &emsp;</strong>
               <b-form-select size="sm" v-model="language" :options="this.$store.state.language"/>
-              &emsp;oppure
+              &emsp;or
               <b-button variant="link" @click="insertLanguage = true">
-                  Crea una nuova lingua
+                  Create a new language
               </b-button>
             </b-col>
           </div>
           <template #overlay>
             <b-input-group class="mt-3">
-              <b-form-input v-model="newLanguage" placeholder="Inserisci la nuova lingua" />
+              <b-form-input v-model="newLanguage" placeholder="Insert new language" />
               <b-input-group-append>
                 <b-button variant="info" @click="insertLanguage=false & addNewLanguage()">
-                  Conferma
+                  Update
                 </b-button>
-                <b-button variant="outline-secondary" @click="insertLanguage=false">Indietro</b-button>
+                <b-button variant="outline-secondary" @click="insertLanguage=false">Back</b-button>
               </b-input-group-append>
             </b-input-group>
           </template>
@@ -92,7 +91,7 @@
           <input type="date" v-model="date" required pattern="\d{4}-\d{2}-\d{2}">
         </b-col>
         <b-col>
-          <b-form-checkbox size="md" :v-model="isDateDeduced">La data è stata dedotta?</b-form-checkbox>
+          <b-form-checkbox size="md" :v-model="isDateDeduced">The date has been deduced?</b-form-checkbox>
         </b-col>
         <b-col lg="8">
         </b-col>
@@ -136,7 +135,8 @@
     <div class="text-center">
       <b-button v-show="!loading" @click.prevent="submit()">Submit</b-button>
       <b-spinner v-show="loading" variant="primary"></b-spinner>
-      <p v-show="error">Errore nella richiesta. Riprovare</p>
+      <p v-show="error">The request handler returned an error. Check the server logs for more info.</p>
+      <p v-show="success">Success! {{this.toastText}}</p>
     </div>
 
   </div>
@@ -153,7 +153,7 @@ export default ({
         incipit: '',
         transcription: '',
         language: '',
-        date: '', // Year - Month - Date
+        date: '', // Year - Month - Day
         isDateDeduced: false,
         collection: '',
         folder: '',
@@ -165,6 +165,8 @@ export default ({
         newLanguage: '',
         error: false,
         loading: false,
+        toastText: '',
+        success: false,
       }
     },
     methods: {
@@ -195,11 +197,15 @@ export default ({
                         shelfmark: this.shelfmark,
                         folder_number: this.folder_number,
                         is_date_deduced: this.isDateDeduced};
-          const header = { 'Content-Type': 'application/json' , 'Authorization': this.$store.state.token };
+          const header = { 'Content-Type': 'application/json' };
           console.log(header);
           this.loading=true;
-          const response = await this.$http.post('http://'+this.$store.state.address+':5000/api/v1/document/', data, header);
-          console.log(response.data.access_token);
+          const response = await this.$http.post('http://'+this.$store.state.address+'/api/v1/document/', data, header);
+          if (response.statusText=='CREATED'){
+            this.toastText='New document info: \n ID : '+response.data.id+' Incipit : '+response.data.incipit;
+            this.success=true;
+            this.loading=false;
+          }
         }
         catch (e) {
           this.loading = false;
