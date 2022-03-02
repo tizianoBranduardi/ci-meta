@@ -194,6 +194,9 @@ export default ({
                         incipit: this.incipit,
                         transcription: this.transcription,
                         note: this.note,
+                        language: this.language,
+                        gregorian_date : this.date,
+                        collection : this.collection,
                         shelfmark: this.shelfmark,
                         folder_number: this.folder_number,
                         is_date_deduced: this.isDateDeduced};
@@ -202,7 +205,7 @@ export default ({
           this.loading=true;
           const response = await this.$http.post('http://'+this.$store.state.address+'/api/v1/document/', data, header);
           if (response.statusText=='CREATED'){
-            this.toastText='New document info: \n ID : '+response.data.id+' Incipit : '+response.data.incipit;
+            this.toastText='New document info: \n ID : '+response.data.id;
             this.success=true;
             this.loading=false;
           }

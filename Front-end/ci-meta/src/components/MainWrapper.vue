@@ -1,7 +1,7 @@
 <template>
   <div>
   <p class="text-center" v-if="!this.$store.state.logged">
-    Welcome into ci-meta the historical documents analysis application
+    Welcome into <strong>ci-meta</strong> the historical documents analysis application
     <br>
     Login to access the services
   </p>

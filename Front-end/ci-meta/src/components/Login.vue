@@ -32,7 +32,7 @@
         </div>
       </b-form>
     </b-card>
-
+    
   </div>
 </template>
 
