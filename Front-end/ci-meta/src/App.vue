@@ -4,12 +4,12 @@
       <b-navbar-brand style="margin : 0px 10px 0px 10px">Ci-Meta</b-navbar-brand>
       <b-nav style="margin : 0px 10px 0px 10px"><router-link to="/">Home</router-link>
       </b-nav>
-      <b-nav style="margin : 0px 10px 0px 10px"><router-link to="/documents">New Document
+      <!-- <b-nav style="margin : 0px 10px 0px 10px"><router-link to="/documents">New Document
       </router-link></b-nav>
       <b-nav style="margin : 0px 10px 0px 10px">
         <router-link to="/search">Search Document
         </router-link>  
-      </b-nav>
+      </b-nav> -->
       <UserOnMenu />
     </b-navbar>
     <div style="margin: 10px 10px 10px 10px">

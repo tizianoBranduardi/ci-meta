@@ -24,6 +24,12 @@ export default new Vuex.Store({
     },
     storeLanguage(state, newLanguage) {
       state.language.push({value: newLanguage.toLowerCase(), text: newLanguage.charAt(0).toUpperCase() + newLanguage.slice(1)});
-    }
+    },
+    logout(state) {
+      state.token = '';
+      state.username = '';
+      state.logged = false;
+      state.address= '';
+    },
   },
 });

@@ -24,7 +24,7 @@
   <div v-else>
     <b-button variant="link" @click="submit = false">Back to selection</b-button>
     <br>
-    <ShowDocuments :id="id">
+    <ShowDocuments :id="id" />
   </div>
 </template>
 
