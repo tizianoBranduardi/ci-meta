@@ -87,8 +87,8 @@
     <b-container style="width: 100%">
       <b-row>
         <b-col>
-          <strong>Data &emsp;</strong>
-          <input type="date" v-model="date" required pattern="\d{4}-\d{2}-\d{2}">
+          <strong>Date &emsp;</strong>
+          <b-form-input :id="type-date" v-model="date" required pattern="\d{4}-\d{2}-\d{2}"></b-form-input>
         </b-col>
         <b-col>
           <b-form-checkbox size="md" :v-model="isDateDeduced">The date has been deduced?</b-form-checkbox>

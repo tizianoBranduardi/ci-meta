@@ -1,249 +1,250 @@
 <template>
     <div>
-      <h2>Document {{id}}</h2>
+      <h2 class="text-center">Document {{id}}</h2>
+      <b-container>
+        <hr>
+        <b-row>
+          <b-col b-col>
+            <p v-show="!editType">
+              <strong>Document type &emsp;</strong>{{documentType}}
+              <b-button variant="link" size="sm" @click="editType = true">
+                  edit
+              </b-button>
+            </p>
+            <div>
+            <b-input-group class="mt-3" v-show="editType">
+              <b-form-input v-model="documentType" maxlength="255" placeholder=documentType />
+              <b-input-group-append>
+                <b-button variant="info" @click="editType=false">Update</b-button>
+              </b-input-group-append>
+            </b-input-group>
+            </div>
+          </b-col>
 
-        <b-container>
-          <b-row>
-          <div style="display-inline">
-            <b-col b-col sm="auto">
-              <p v-show="!editType">
-                <strong>Document type &emsp;</strong>{{documentType}}
-                &emsp;&emsp;
-                <b-button variant="link" @click="editType = true">
-                    edit
-                </b-button>
-              </p>
-              <div>
-              <b-input-group class="mt-3" v-show="editType">
-                <b-form-input v-model="documentType" maxlength="255" placeholder=documentType />
-                <b-input-group-append>
-                  <b-button variant="info" @click="editType=false">Update</b-button>
-                </b-input-group-append>
-              </b-input-group>
-              </div>
-            </b-col>
-          </div>
-          </b-row>
-        </b-container>
-        
-        <b-container>
-          <b-row>
-          <div style="display-inline">
-            <b-col b-col sm="auto">
-              <p v-show="!editIncipit">
-                <strong>Incipit &emsp;</strong>{{incipit}}
-                &emsp;&emsp;
-                <b-button variant="link" @click="editIncipit = true">
-                    edit
-                </b-button>
-              </p>
-              <div>
-              <b-input-group class="mt-3" v-show="editIncipit">
-                <b-form-input v-model="incipit" maxlength="255" placeholder=incipit />
-                <b-input-group-append>
-                  <b-button variant="info" @click="editIncipit=false">Update</b-button>
-                </b-input-group-append>
-              </b-input-group>
-              </div>
-            </b-col>
-          </div>
-          </b-row>
-        </b-container>
-
-        <b-container>
-          <b-row>
-          <div style="display-inline">
-            <b-col b-col sm="auto">
-              <p v-show="!editTranscription">
-                <strong>Transcription &emsp;</strong>{{transcription}}
-                &emsp;&emsp;
-                <b-button variant="link" @click="editTranscription = true">
-                    edit
-                </b-button>
-              </p>
-              <div>
-              <b-input-group class="mt-3" v-show="editTranscription">
-                <b-form-textarea rows="6" v-model="transcription" maxlength="255" placeholder=transcription />
-                <b-input-group-append>
-                  <b-button variant="info" @click="editTranscription=false">Update</b-button>
-                </b-input-group-append>
-              </b-input-group>
-              </div>
-            </b-col>
-          </div>
-          </b-row>
-        </b-container>
-
-        <b-container>
-          <b-row>
-          <div style="display-inline">
-            <b-col b-col sm="auto">
-              <p v-show="!editLanguage">
-                <strong>Language &emsp;</strong>{{language}}
-                &emsp;&emsp;
-                <b-button variant="link" @click="editLanguage = true">
-                    edit
-                </b-button>
-              </p>
-              <div>
-              <b-input-group class="mt-3" v-show="editLanguage">
-                <b-form-input v-model="language" maxlength="255" placeholder=language />
-                <b-input-group-append>
-                  <b-button variant="info" @click="editLanguage=false">Update</b-button>
-                </b-input-group-append>
-              </b-input-group>
-              </div>
-            </b-col>
-          </div>
-          </b-row>
-        </b-container>
-
-        <b-container>
-          <b-row>
-          <div style="display-inline">
-            <b-col b-col sm="auto">
-              <p v-show="!editDate">
-                <strong>Date &emsp;</strong>{{date}}
-                &emsp;&emsp;
-                <b-button variant="link" @click="editDate = true">
-                    edit
-                </b-button>
-              </p>
-              <div>
+          <b-col b-col >
+            <p v-show="!editDate">
+              <strong>Date &emsp;</strong>{{date}}
+              <b-button variant="link" size="sm" @click="editDate = true">
+                  edit
+              </b-button>
+            </p>
+            <div>
               <b-input-group class="mt-3" v-show="editDate">
                 <b-form-input v-model="date" maxlength="255" placeholder=date />
                 <b-input-group-append>
                   <b-button variant="info" @click="editDate=false">Update</b-button>
                 </b-input-group-append>
               </b-input-group>
-              </div>
-            </b-col>
-          </div>
-          </b-row>
-        </b-container>
+            </div>
+          </b-col>
+        </b-row>
 
-        <b-container>
-          <b-row>
-          <div style="display-inline">
-            <b-col b-col sm="auto">
-              <p v-show="!editCollection">
-                <strong>Collection &emsp;</strong>{{collection}}
-                &emsp;&emsp;
-                <b-button variant="link" @click="editCollection = true">
-                    edit
-                </b-button>
-              </p>
-              <div>
-              <b-input-group class="mt-3" v-show="editCollection">
-                <b-form-input v-model="collection" maxlength="255" placeholder=collection />
-                <b-input-group-append>
-                  <b-button variant="info" @click="editCollection=false">Update</b-button>
-                </b-input-group-append>
-              </b-input-group>
-              </div>
-            </b-col>
-          </div>
-          </b-row>
-        </b-container>
+        <b-row>
+          <b-col b-col >
+            <p v-show="!editCollection">
+              <strong>Collection &emsp;</strong>{{collection}}
+              <b-button variant="link" size="sm" @click="editCollection = true">
+                  edit
+              </b-button>
+            </p>
+            <div>
+            <b-input-group class="mt-3" v-show="editCollection">
+              <b-form-input v-model="collection" maxlength="255" placeholder=collection />
+              <b-input-group-append>
+                <b-button variant="info" @click="editCollection=false">Update</b-button>
+              </b-input-group-append>
+            </b-input-group>
+            </div>
+          </b-col>
+          <b-col b-col >
+            <p v-show="!editFolder">
+              <strong>Folder &emsp;</strong>{{folder}}
+              <b-button variant="link" @click="editFolder = true">
+                  edit
+              </b-button>
+            </p>
+            <div>
+            <b-input-group class="mt-3" v-show="editFolder">
+              <b-form-input v-model="folder" maxlength="255" placeholder=folder />
+              <b-input-group-append>
+                <b-button variant="info" @click="editFolder=false">Update</b-button>
+              </b-input-group-append>
+            </b-input-group>
+            </div>
+          </b-col>
+          <b-col b-col >
+            <p v-show="!editFolderNumber">
+              <strong>Folder Number &emsp;</strong>{{folderNumber}}
+              <b-button variant="link" @click="editFolderNumber = true">
+                  edit
+              </b-button>
+            </p>
+            <div>
+            <b-input-group class="mt-3" v-show="editFolderNumber">
+              <b-form-input v-model="folderNumber" maxlength="255" placeholder=folderNumber />
+              <b-input-group-append>
+                <b-button variant="info" @click="editFolderNumber=false">Update</b-button>
+              </b-input-group-append>
+            </b-input-group>
+            </div>
+          </b-col>
+          <b-col b-col >
+            <p v-show="!editShelfmark">
+              <strong>Shelfmark &emsp;</strong>{{shelfmark}}
+              <b-button variant="link" @click="editShelfmark = true">
+                  edit
+              </b-button>
+            </p>
+            <div>
+            <b-input-group class="mt-3" v-show="editShelfmark">
+              <b-form-input v-model="shelfmark" maxlength="255" placeholder=shelfmark />
+              <b-input-group-append>
+                <b-button variant="info" @click="editShelfmark=false">Update</b-button>
+              </b-input-group-append>
+            </b-input-group>
+            </div>
+          </b-col>
+        </b-row>
 
-        <b-container>
-          <b-row>
-          <div style="display-inline">
-            <b-col b-col sm="auto">
-              <p v-show="!editFolder">
-                <strong>Folder &emsp;</strong>{{folder}}
-                &emsp;&emsp;
-                <b-button variant="link" @click="editFolder = true">
-                    edit
-                </b-button>
-              </p>
-              <div>
-              <b-input-group class="mt-3" v-show="editFolder">
-                <b-form-input v-model="folder" maxlength="255" placeholder=folder />
-                <b-input-group-append>
-                  <b-button variant="info" @click="editFolder=false">Update</b-button>
-                </b-input-group-append>
-              </b-input-group>
-              </div>
-            </b-col>
-          </div>
-          </b-row>
-        </b-container>
+        <hr>
 
-        <b-container>
-          <b-row>
-          <div style="display-inline">
-            <b-col b-col sm="auto">
-              <p v-show="!editFolderNumber">
-                <strong>Folder Number &emsp;</strong>{{folderNumber}}
-                &emsp;&emsp;
-                <b-button variant="link" @click="editFolderNumber = true">
-                    edit
-                </b-button>
-              </p>
-              <div>
-              <b-input-group class="mt-3" v-show="editFolderNumber">
-                <b-form-input v-model="folderNumber" maxlength="255" placeholder=folderNumber />
-                <b-input-group-append>
-                  <b-button variant="info" @click="editFolderNumber=false">Update</b-button>
-                </b-input-group-append>
-              </b-input-group>
-              </div>
-            </b-col>
-          </div>
-          </b-row>
-        </b-container>
+        <b-row>
+          <b-col b-col>
+            <p v-show="!editIncipit">
+              <strong>Incipit &emsp;</strong>{{incipit}}
+              &emsp;&emsp;
+              <b-button variant="link" @click="editIncipit = true">
+                  edit
+              </b-button>
+            </p>
+            <div>
+            <b-input-group class="mt-3" v-show="editIncipit">
+              <b-form-input v-model="incipit" maxlength="255" placeholder=incipit />
+              <b-input-group-append>
+                <b-button variant="info" @click="editIncipit=false">Update</b-button>
+              </b-input-group-append>
+            </b-input-group>
+            </div>
+          </b-col>
+        </b-row>
 
-        <b-container>
-          <b-row>
-          <div style="display-inline">
-            <b-col b-col sm="auto">
-              <p v-show="!editShelfmark">
-                <strong>Shelfmark &emsp;</strong>{{shelfmark}}
-                &emsp;&emsp;
-                <b-button variant="link" @click="editShelfmark = true">
-                    edit
-                </b-button>
-              </p>
-              <div>
-              <b-input-group class="mt-3" v-show="editShelfmark">
-                <b-form-input v-model="shelfmark" maxlength="255" placeholder=shelfmark />
-                <b-input-group-append>
-                  <b-button variant="info" @click="editShelfmark=false">Update</b-button>
-                </b-input-group-append>
-              </b-input-group>
-              </div>
-            </b-col>
-          </div>
-          </b-row>
-        </b-container>
+        <b-row>
+          <b-col b-col>
+            <p v-show="!editTranscription">
+              <strong>Transcription &emsp;</strong>{{transcription}}
+              &emsp;&emsp;
+              <b-button variant="link" @click="editTranscription = true">
+                  edit
+              </b-button>
+            </p>
+            <div>
+            <b-input-group class="mt-3" v-show="editTranscription">
+              <b-form-textarea rows="6" v-model="transcription" maxlength="255" placeholder=transcription />
+              <b-input-group-append>
+                <b-button variant="info" @click="editTranscription=false">Update</b-button>
+              </b-input-group-append>
+            </b-input-group>
+            </div>
+          </b-col>
+          <b-col b-col>
+            <b-card
+              border-variant="danger"
+              header="Danger"
+              header-border-variant="danger"
+              header-text-variant="danger"
+              align="center"
+              >
+              <b-row no-gutters>
+                <b-col md="6">
+                  <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img>
+                </b-col>
+                <b-col md="6">
+                  <b-card-body title="Horizontal Card">
+                    <b-card-text>
+                      This is a wider card with supporting text as a natural lead-in to additional content.
+                      This content is a little bit longer.
+                    </b-card-text>
+                  </b-card-body>
+                </b-col>
+              </b-row>
+            </b-card>
+          </b-col>
+        </b-row>
 
+        <b-row>
+          <b-col b-col>
+            <p v-show="!editLanguage">
+              <strong>Language &emsp;</strong>{{language}}
+              &emsp;&emsp;
+              <b-button variant="link" @click="editLanguage = true">
+                  edit
+              </b-button>
+            </p>
+            <div>
+            <b-input-group class="mt-3" v-show="editLanguage">
+              <b-form-input v-model="language" maxlength="255" placeholder=language />
+              <b-input-group-append>
+                <b-button variant="info" @click="editLanguage=false">Update</b-button>
+              </b-input-group-append>
+            </b-input-group>
+            </div>
+          </b-col>
+        </b-row>
+
+        <b-row>
+          
+        </b-row>
+
+        <b-row>
+          
+        </b-row>
+
+        <b-row>
+          
+        </b-row>
+
+        <b-row>
+          
+        </b-row>
+
+        <b-row>
+          
+        </b-row>
+
+        <b-row>
+          <b-col b-col >
+            <p>
+              <strong>Note &emsp;</strong>
+            </p>
+            <div>
+            <b-input-group class="mt-3">
+              <b-form-input prepend="Note" v-model="note" maxlength="255" placeholder=note />
+            </b-input-group>
+            </div>
+          </b-col>
+        </b-row>
+      </b-container>
+      <div v-show="deleteConfirm">
+        <br>
         <b-container>
-          <b-row>
-          <div style="display-inline">
-            <b-col b-col sm="auto">
-              <!-- <p v-show="!editNote">
-                <strong>Note &emsp;</strong>{{note}}
-                &emsp;&emsp;
-                <b-button variant="link" @click="editNote = true">
-                    edit
-                </b-button>
-              </p> -->
-              <div>
-              <b-input-group class="mt-3">
-                <b-form-input prepend="Note" v-model="note" maxlength="255" placeholder=note />
-              </b-input-group>
-              </div>
-            </b-col>
-          </div>
-          </b-row>
+          <b-card border-variant="danger"
+            header="Delete Confirm"
+            header-border-variant="danger"
+            header-text-variant="danger"
+          align="center">
+            <b-card-text class="text-center">
+              Are you sure you want to delete this document?&emsp;
+              <b-button variant="danger" @click="deleteDocument(id)">Yes</b-button>&emsp;
+              <b-button variant="success" @click="deleteConfirm = false">No</b-button>
+            </b-card-text>
+          </b-card>
         </b-container>
-      <br>
-      <div class="text-center">
-        <b-button variant="danger" @click="deleteDocument(id)">Delete</b-button>&emsp;
+      </div>
+        <br>
+      <div class="text-center" v-show="!deleteConfirm">
+        <b-button variant="danger" @click="deleteConfirm=true">Delete</b-button>&emsp;
         <b-button variant="success" @click="submit()">Update</b-button>
       </div>
-
   </div>
 </template>
 
@@ -277,7 +278,7 @@ export default {
       editCollection: false,
       editFolder: false,
       editFolderNumber: false,
-
+      deleteConfirm : false,
     }
   },
   async mounted() {
