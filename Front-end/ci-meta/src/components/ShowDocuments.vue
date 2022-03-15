@@ -147,27 +147,7 @@
             </div>
           </b-col>
           <b-col b-col>
-            <b-card
-              border-variant="danger"
-              header="Danger"
-              header-border-variant="danger"
-              header-text-variant="danger"
-              align="center"
-              >
-              <b-row no-gutters>
-                <b-col md="6">
-                  <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img>
-                </b-col>
-                <b-col md="6">
-                  <b-card-body title="Horizontal Card">
-                    <b-card-text>
-                      This is a wider card with supporting text as a natural lead-in to additional content.
-                      This content is a little bit longer.
-                    </b-card-text>
-                  </b-card-body>
-                </b-col>
-              </b-row>
-            </b-card>
+            <insert-image :id="id" ref="images"/>
           </b-col>
         </b-row>
 
@@ -189,26 +169,6 @@
             </b-input-group>
             </div>
           </b-col>
-        </b-row>
-
-        <b-row>
-          
-        </b-row>
-
-        <b-row>
-          
-        </b-row>
-
-        <b-row>
-          
-        </b-row>
-
-        <b-row>
-          
-        </b-row>
-
-        <b-row>
-          
         </b-row>
 
         <b-row>
@@ -249,7 +209,9 @@
 </template>
 
 <script>
+import InsertImage from './InsertImage.vue';
 export default {
+  components: { InsertImage },
   name: 'ShowDocuments',
   props : ['id'],
   data () {
@@ -288,7 +250,6 @@ export default {
       const response = await this.$http.get('http://'+this.$store.state.address+'/api/v1/document/'+this.id, header);
       if (response.status==200){
         this.show=true;
-        this.show=true;
         this.documentType=response.data.result.type;
         this.incipit=response.data.result.incipit;
         this.transcription=response.data.result.transcription;
@@ -323,6 +284,7 @@ export default {
     },
     async submit() {
       try {
+        this.$refs.images.submit();
         this.error = false;
         const data = { type: this.documentType, 
                       incipit: this.incipit,
@@ -335,7 +297,6 @@ export default {
                       folder_number: this.folder_number,
                       is_date_deduced: this.isDateDeduced};
         const header = { 'Content-Type': 'application/json' };
-        console.log(header);
         this.loading=true;
         const response = await this.$http.put('http://'+this.$store.state.address+'/api/v1/document/'+this.id, data, header);
         if (response.status==200)
@@ -348,68 +309,3 @@ export default {
   }
 };
 </script>
-
-
-<!--
-<template>
-    <div>
-    <p>Document</p>
-    <p>Incipit : {{incipit}}</p>
-    <p>Transcription : {{transcription}}</p>
-  </div>
-</template>
-
-<script>
-
-export default {
-    name: 'showDocuments',
-    data(){
-      return{
-        documentType: '---',
-        incipit: '',
-        transcription: '',
-        language: '',
-        date: '',
-        isDateDeduced: false,
-        collection: '',
-        folder: '',
-        folderNumber: '',
-        shelfmark: '',
-        note: '',
-        error: false,
-        loading: false,
-        success: false,
-      }
-    },
-    methods: {
-      async created() {
-        try {
-        this.error = false;
-        const header = { 'Content-Type': 'application/json' };
-        console.log("Start show");
-        const response = await this.$http.get('http://'+this.$store.state.address+'/api/v1/document/1', header);
-        console.log(response);
-        if (response){
-            this.show=true;
-            this.documentType=response.result.type;
-            this.incipit=response.result.incipit;
-            this.transcription=response.result.transcription;
-            this.language=response.result.language;
-            this.date=response.result.gregorian_date;
-            this.isDateDeduced=response.result.is_date_deduced;
-            this.collection=response.result.collection;
-            this.folder=response.result.folder;
-            this.folderNumber=response.result.folder_number;
-            this.shelfmark=response.result.shelfmark;
-            }
-        }
-        catch (e) {
-        this.loading = false;
-        console.log(e);
-        this.error = true;
-        }
-      },
-    },
-};
-</script>
--->

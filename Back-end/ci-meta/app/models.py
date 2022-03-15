@@ -5,6 +5,7 @@ from sqlalchemy import Boolean, Column, Date, DateTime, ForeignKey, Integer, Lar
 from sqlalchemy.orm import relationship
 from sqlalchemy.types import TEXT
 from flask_appbuilder import Model
+from flask_appbuilder.security.sqla.models import User
 
 
 class Document(Model):
@@ -69,7 +70,7 @@ class Place(Model):
     __tablename__ = 'place'
 
     id = Column(Integer, Sequence('place_id_seq'), primary_key=True, nullable=True)
-    city = Column(String(255), unique=True)
+    city = Column(String(255))
     description = Column(String(255))
     is_deleted = Column(Boolean, server_default=text("false"))
     is_validated = Column(Boolean)
@@ -85,10 +86,10 @@ class Actor(Model):
 
     document_id = Column(ForeignKey('document.id', ondelete='CASCADE'), primary_key=True, nullable=False)
     person_id = Column(ForeignKey('person.id', ondelete='CASCADE'), primary_key=True, nullable=False)
-    appuser_id = Column(ForeignKey('appuser.id', ondelete='CASCADE'), primary_key=True, nullable=False)
+    appuser_id = Column(ForeignKey('ab_user.id', ondelete='CASCADE'), primary_key=True, nullable=False)
     role = Column(String(255))
 
-    appuser = relationship('Appuser')
+    appuser = relationship('User')
     document = relationship('Document')
     person = relationship('Person')
 
@@ -100,9 +101,9 @@ class Image(Model):
     __tablename__ = 'image'
 
     id = Column(Integer, Sequence('image_id_seq'), primary_key=True, nullable=True)
-    title = Column(String(255))
-    data = Column(LargeBinary, unique=True)
-    description = Column(String(255))
+    title = Column(String(255),nullable=True)
+    data = Column(TEXT)
+    description = Column(String(255), nullable=True)
     document_id = Column(ForeignKey('document.id'), nullable=False)
 
     document = relationship('Document')
@@ -119,10 +120,10 @@ class Position(Model):
 
     document_id = Column(ForeignKey('document.id', ondelete='CASCADE'), primary_key=True, nullable=False)
     place_id = Column(ForeignKey('place.id', ondelete='CASCADE'), primary_key=True, nullable=False)
-    appuser_id = Column(ForeignKey('appuser.id', ondelete='CASCADE'), primary_key=True, nullable=False)
+    appuser_id = Column(ForeignKey('ab_user.id', ondelete='CASCADE'), primary_key=True, nullable=False)
     type = Column(String(255))
 
-    appuser = relationship('Appuser')
+    appuser = relationship('User')
     document = relationship('Document')
     place = relationship('Place')
 

@@ -10,6 +10,7 @@ app.config["DEBUG"] = True
 class Document(ModelRestApi):
     resource_name = 'document'
     datamodel = SQLAInterface(Document)
+    base_order = ('id', 'asc')
     page_size=1000
 
 appbuilder.add_api(Document)
@@ -55,5 +56,3 @@ class Position(ModelRestApi):
     page_size=1000
 
 appbuilder.add_api(Position)
-
-#db.create_all()

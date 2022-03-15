@@ -68,6 +68,7 @@
             this.logged = true;
             this.$http.defaults.headers.common['Authorization'] ='Bearer '+response.data.access_token;
             this.$store.commit('login', {username: this.uname, token: response.data.access_token, address: this.address});
+            this.findId();
             this.$router.push({ name: 'Home'});
           }
         }
@@ -77,8 +78,23 @@
           this.error = true;
           this.loading= false;
         }
-        
       },
+      async findId() {
+        try{
+          const headers = { 'Content-Type': 'application/json' };
+          const response = await this.$http.get('http://'+this.address+'/api/v1/appuser/', headers);
+          response.data.result.forEach((user, index) => {
+          if(user.username==this.uname){
+            console.log(response.data);
+            console.log(response.data.ids[index]);
+            this.$store.commit('id', response.data.ids[index]);
+            }
+          });
+        }
+        catch (e){
+          console.log(e);
+        }
+      }
     },
   };
 </script>

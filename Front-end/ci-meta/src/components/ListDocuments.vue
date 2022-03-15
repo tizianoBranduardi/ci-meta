@@ -1,5 +1,20 @@
 <template>
   <div>
+    <b-container>
+      <hr>
+      <b-row>
+        <b-col>
+          <div class="text-center">
+            <b-button-group class="mx-1">
+              <b-button v-if="page>0" @click="page = page-1, loadPage()" variant="primary">&laquo;Page {{page}}</b-button>
+              <b-button v-if="ids.length==pageSize" @click="page = page+1, loadPage()" variant="primary">&raquo;Page {{page+2}}</b-button>
+            </b-button-group>
+          </div>
+          </b-col>
+      </b-row>
+      <hr>
+    </b-container>
+
     <p v-show="!show">Loading...</p>
     <b-table-simple v-show="show" bordered="true">
       <b-thead>
@@ -47,13 +62,15 @@ export default {
       docs:[],
       show: false,
       showDoc : false,
+      page : 0,
+      pageSize : 20,
     }
   },
     async mounted() {
       try {
         this.error = false;
         const header = { 'Content-Type': 'application/json' };
-        const response = await this.$http.get('http://'+this.$store.state.address+'/api/v1/document/', header);
+        const response = await this.$http.get('http://'+this.$store.state.address+'/api/v1/document/?q=(page:'+this.page+',page_size:'+this.pageSize+')', header);
         console.log(response.data.count);
         if (response.data.count>=1){
           this.show=true;
@@ -71,6 +88,24 @@ export default {
     methods : {
       showDocs(id) {
         this.$router.push({name: 'Show Documents', params: {id: id}});
+      },
+      async loadPage() {
+        try {
+        this.error = false;
+        const header = { 'Content-Type': 'application/json' };
+        const response = await this.$http.get('http://'+this.$store.state.address+'/api/v1/document/?q=(page:'+this.page+',page_size:'+this.pageSize+')', header);
+        console.log(response.data.count);
+        if (response.data.count>=1){
+          this.show=true;
+          this.ids=response.data.ids;
+          this.docs=response.data.result;
+          }
+        }
+        catch (e) {
+          this.loading = false;
+          console.log(e);
+          this.error = true;
+        } 
       },
     }
 };

@@ -10,39 +10,50 @@
       <b-container>
         <b-row>
           <b-col b-col>
-            <p class="h4 mb-2"><b-icon icon="search" variant="primary" size="lg"></b-icon> Search</p>
+            <div class="text-center">
+              <p class="h4 mb-2"><b-icon icon="search" variant="primary" size="lg"></b-icon> 
+              <router-link to="/search"> Search</router-link>  
+              </p>
+            </div>
           </b-col>
+
           <b-col b-col>
-            <!-- <p class="h4 mb-2">Page 1</p> -->
+            <div class="text-center">
+              <p class="h4 mb-2"><b-icon icon="plus-circle" variant="primary" size="lg"></b-icon>
+              <router-link to="/documents"> New</router-link>
+              </p>
+            </div>
           </b-col>
-          <b-col b-col>
-            <p class="h4 mb-2"><b-icon icon="plus-circle" variant="primary" size="lg"></b-icon> New</p>
-          </b-col>
-          
         </b-row>
       </b-container>
       <list-documents />
     </b-tab>
-    <b-tab title="Places" >
-    </b-tab>
     <b-tab title="Images" >
+      <insert-image-home />
+    </b-tab>
+    <b-tab title="Places" >
+      <list-places />
     </b-tab>
     <b-tab title="Person" >
-    </b-tab>
-    <b-tab title="Actor" >
-    </b-tab>
-    <b-tab title="Position" >
     </b-tab>
   </b-tabs>
 </div>
 </template>
 
 <script>
+import InsertImage from './InsertImage.vue';
+import InsertImageHome from './InsertImageHome.vue';
+import InsertPlace from './InsertPlace.vue';
 import ListDocuments from './ListDocuments.vue';
+import ListPlaces from './ListPlaces.vue';
 
   export default {
   components: {
     ListDocuments,
+    InsertImage,
+    InsertImageHome,
+    InsertPlace,
+    ListPlaces,
   },
 };
 

@@ -8,6 +8,7 @@ export default new Vuex.Store({
     username: '',
     address: 'localhost',
     logged: false,
+    id : 0,
     documentType: [{value: 'research notes', text: 'Research notes'},
                     {value: 'letter', text: 'Letter'}],
     language: [{value: 'latin', text: 'Latin'}, {value: 'italian', text: 'Italian'}],
@@ -18,6 +19,9 @@ export default new Vuex.Store({
       state.username = payload.username;
       state.logged = true;
       state.address= payload.address;
+    },
+    id(state, id){
+      state.id = id;
     },
     storeDocumentType(state, newType) {
       state.documentType.push({value: newType.toLowerCase(), text: newType.charAt(0).toUpperCase() + newType.slice(1)});

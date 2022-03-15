@@ -13,7 +13,9 @@
           <b-form-input v-model="id" id="inline-form-input-id" placeholder="id"></b-form-input>
           </b-input-group>
           <br>
-          <b-button v-on:click.prevent="submit= true" variant="primary">Search</b-button>
+          <div class="text-center">
+            <b-button v-on:click.prevent="submit= true" variant="primary">Search</b-button>
+          </div>
           <br>
           <div class="text-center" style="margin-top: 20px;" v-if="loading">
           <b-spinner variant="primary"></b-spinner>
@@ -24,15 +26,15 @@
   <div v-else>
     <b-button variant="link" @click="submit = false">Back to selection</b-button>
     <br>
-    <ShowDocuments :id="id" />
+    <show-documents-minimal :id="id" />
   </div>
 </template>
 
 <script>
-import ShowDocuments from './ShowDocuments.vue'
+import ShowDocumentsMinimal from './ShowDocumentsMinimal.vue'
 export default {
-  components: { ShowDocuments },
-  name: 'Search',
+  components: { ShowDocumentsMinimal },
+  name: 'SearchDocumentsMinimal',
   data () {
   return {
       id : 0,
