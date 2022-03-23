@@ -1,16 +1,7 @@
 <template>
   <div id="app">
     <b-navbar toggleable="small" type="dark" variant="dark" fixed="top" sticky>
-      <b-navbar-brand style="margin : 0px 10px 0px 10px">Ci-Meta</b-navbar-brand>
-      <b-nav style="margin : 0px 10px 0px 10px"><router-link to="/">Home</router-link>
-      </b-nav>
-      <!-- <b-nav style="margin : 0px 10px 0px 10px"><router-link to="/image">New Image
-      </router-link></b-nav> -->
-      <!--
-      <b-nav style="margin : 0px 10px 0px 10px">
-        <router-link to="/search">Search Document
-        </router-link>  
-      </b-nav> -->
+      <b-navbar-brand style="margin : 0px 10px 0px 10px"><router-link to="/">Ci-Meta</router-link></b-navbar-brand>
       <UserOnMenu />
     </b-navbar>
     <div style="margin: 10px 10px 10px 10px">

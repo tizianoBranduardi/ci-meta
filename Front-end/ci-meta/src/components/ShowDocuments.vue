@@ -172,7 +172,7 @@
         </b-row>
 
         <b-row>
-          <b-col b-col >
+          <b-col>
             <p>
               <strong>Note &emsp;</strong>
             </p>
@@ -181,7 +181,36 @@
               <b-form-input prepend="Note" v-model="note" maxlength="255" placeholder=note />
             </b-input-group>
             </div>
+            <br>
           </b-col>
+        </b-row>
+        <b-row>
+          <show-places v-show="!editPlace" :docId="id"/>
+        </b-row>
+        <b-row>
+          <b-col class="text-center">
+            <br>
+            <b-button variant="primary" @click="editPlace=!editPlace">Edit Places</b-button>
+          </b-col>
+        </b-row>
+        <br>
+        <b-row v-show="editPlace">
+          <b-card
+            border-variant="default"
+            header="Insert Places"
+            header-border-variant="default"
+            header-text-variant="default"
+            align="center"
+            >
+            <b-row>
+              Sent from<br><b-form-select size="sm" v-model="placeFrom" :options="places"/><br>
+            </b-row>
+            <b-row>
+              Sent to<br><b-form-select size="sm" v-model="placeTo" :options="places"/><br>
+            </b-row>
+            <!-- Or<b-button variant="link" @click="createPlace=!createPlace">create a new place</b-button>
+            <insert-place v-show="createPlace"/> -->
+          </b-card>
         </b-row>
       </b-container>
       <div v-show="deleteConfirm">
@@ -210,8 +239,9 @@
 
 <script>
 import InsertImage from './InsertImage.vue';
+import ShowPlaces from './ShowPlaces.vue';
 export default {
-  components: { InsertImage },
+  components: { InsertImage, ShowPlaces },
   name: 'ShowDocuments',
   props : ['id'],
   data () {
@@ -241,6 +271,10 @@ export default {
       editFolder: false,
       editFolderNumber: false,
       deleteConfirm : false,
+      places: [],
+      editPlace : false,
+      placeFrom : '',
+      placeTo : '',
     }
   },
   async mounted() {
@@ -261,6 +295,21 @@ export default {
         this.folderNumber=response.data.result.folder_number;
         this.shelfmark=response.data.result.shelfmark;
         this.note=response.data.result.note;
+        try {
+          const header = { 'Content-Type': 'application/json' };
+          const response = await this.$http.get('http://'+this.$store.state.address+'/api/v1/place/', header);
+          if (response.status==200){
+            response.data.result.forEach((place,index) => {
+              if(!place.is_deleted && place.is_validated)
+                this.places.push({value:response.data.ids[index], text:place.city})
+            });
+          }
+        }
+        catch (e) {
+          this.loading = false;
+          console.log(e);
+          this.error = true;
+        }
       }
     }
     catch (e) {
@@ -299,8 +348,33 @@ export default {
         const header = { 'Content-Type': 'application/json' };
         this.loading=true;
         const response = await this.$http.put('http://'+this.$store.state.address+'/api/v1/document/'+this.id, data, header);
-        if (response.status==200)
+        if (response.status==200){
+          try {
+          const data = { place: this.placeFrom,
+                        appuser: this.$store.state.id,
+                        document: this.id,
+                        type: 'from'
+                        };
+          const header = { 'Content-Type': 'application/json' };
+          const response = await this.$http.post('http://'+this.$store.state.address+'/api/v1/position/', data, header);
+          if (response.statusText=='CREATED'){
+            const data = { place: this.placeTo,
+                        appuser: this.$store.state.id,
+                        document: this.id,
+                        type: 'to'
+                        };
+            const header = { 'Content-Type': 'application/json' };
+            const response = await this.$http.post('http://'+this.$store.state.address+'/api/v1/position/', data, header);
+            if (response.statusText=='CREATED'){
+              this.$router.push({ name: 'Home'});
+            }
+          }
+        }
+        catch (e) {
+          console.log(e);
+        }
           this.$router.push({name: 'Home'});
+        }
       }
       catch (e) {
         console.log(e);

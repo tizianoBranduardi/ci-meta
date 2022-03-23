@@ -1,6 +1,8 @@
 <template>
   <b-nav style="margin : 0px 10px 0px 10px" v-if="this.$store.state.logged">
-    Welcome {{this.$store.state.username}} - <a @click="logout()" href="">Logout</a>
+    <strong>Welcome {{this.$store.state.username}}</strong>&emsp; 
+    <a @click="logout()" href="">Logout</a>&emsp; 
+    <a href="http://localhost:5000/users/userinfo/">Account settings</a>
   </b-nav>
   <b-nav style="margin : 0px 10px 0px 10px" v-else>
     <router-link to="/login">Login</router-link>

@@ -1,0 +1,346 @@
+"filters" : {
+    "collection": [
+        {
+            "name": "Inizia con",
+            "operator": "sw"
+        },
+        {
+            "name": "Termina con",
+            "operator": "ew"
+        },
+        {
+            "name": "Contiene",
+            "operator": "ct"
+        },
+        {
+            "name": "Uguale a",
+            "operator": "eq"
+        },
+        {
+            "name": "Non inizia con",
+            "operator": "nsw"
+        },
+        {
+            "name": "Non termina con",
+            "operator": "new"
+        },
+        {
+            "name": "Non contiene",
+            "operator": "nct"
+        },
+        {
+            "name": "Non uguale a",
+            "operator": "neq"
+        }
+    ],
+    "folder": [
+        {
+            "name": "Inizia con",
+            "operator": "sw"
+        },
+        {
+            "name": "Termina con",
+            "operator": "ew"
+        },
+        {
+            "name": "Contiene",
+            "operator": "ct"
+        },
+        {
+            "name": "Uguale a",
+            "operator": "eq"
+        },
+        {
+            "name": "Non inizia con",
+            "operator": "nsw"
+        },
+        {
+            "name": "Non termina con",
+            "operator": "new"
+        },
+        {
+            "name": "Non contiene",
+            "operator": "nct"
+        },
+        {
+            "name": "Non uguale a",
+            "operator": "neq"
+        }
+    ],
+    "folder_number": [
+        {
+            "name": "Inizia con",
+            "operator": "sw"
+        },
+        {
+            "name": "Termina con",
+            "operator": "ew"
+        },
+        {
+            "name": "Contiene",
+            "operator": "ct"
+        },
+        {
+            "name": "Uguale a",
+            "operator": "eq"
+        },
+        {
+            "name": "Non inizia con",
+            "operator": "nsw"
+        },
+        {
+            "name": "Non termina con",
+            "operator": "new"
+        },
+        {
+            "name": "Non contiene",
+            "operator": "nct"
+        },
+        {
+            "name": "Non uguale a",
+            "operator": "neq"
+        }
+    ],
+    "gregorian_date": [
+        {
+            "name": "Uguale a",
+            "operator": "eq"
+        },
+        {
+            "name": "Maggiore di",
+            "operator": "gt"
+        },
+        {
+            "name": "Più piccolo di",
+            "operator": "lt"
+        },
+        {
+            "name": "Non uguale a",
+            "operator": "neq"
+        }
+    ],
+    "incipit": [
+        {
+            "name": "Inizia con",
+            "operator": "sw"
+        },
+        {
+            "name": "Termina con",
+            "operator": "ew"
+        },
+        {
+            "name": "Contiene",
+            "operator": "ct"
+        },
+        {
+            "name": "Uguale a",
+            "operator": "eq"
+        },
+        {
+            "name": "Non inizia con",
+            "operator": "nsw"
+        },
+        {
+            "name": "Non termina con",
+            "operator": "new"
+        },
+        {
+            "name": "Non contiene",
+            "operator": "nct"
+        },
+        {
+            "name": "Non uguale a",
+            "operator": "neq"
+        }
+    ],
+    "is_date_deduced": [
+        {
+            "name": "Uguale a",
+            "operator": "eq"
+        },
+        {
+            "name": "Non uguale a",
+            "operator": "neq"
+        }
+    ],
+    "is_deleted": [
+        {
+            "name": "Uguale a",
+            "operator": "eq"
+        },
+        {
+            "name": "Non uguale a",
+            "operator": "neq"
+        }
+    ],
+    "language": [
+        {
+            "name": "Inizia con",
+            "operator": "sw"
+        },
+        {
+            "name": "Termina con",
+            "operator": "ew"
+        },
+        {
+            "name": "Contiene",
+            "operator": "ct"
+        },
+        {
+            "name": "Uguale a",
+            "operator": "eq"
+        },
+        {
+            "name": "Non inizia con",
+            "operator": "nsw"
+        },
+        {
+            "name": "Non termina con",
+            "operator": "new"
+        },
+        {
+            "name": "Non contiene",
+            "operator": "nct"
+        },
+        {
+            "name": "Non uguale a",
+            "operator": "neq"
+        }
+    ],
+    "note": [
+        {
+            "name": "Inizia con",
+            "operator": "sw"
+        },
+        {
+            "name": "Termina con",
+            "operator": "ew"
+        },
+        {
+            "name": "Contiene",
+            "operator": "ct"
+        },
+        {
+            "name": "Uguale a",
+            "operator": "eq"
+        },
+        {
+            "name": "Non inizia con",
+            "operator": "nsw"
+        },
+        {
+            "name": "Non termina con",
+            "operator": "new"
+        },
+        {
+            "name": "Non contiene",
+            "operator": "nct"
+        },
+        {
+            "name": "Non uguale a",
+            "operator": "neq"
+        }
+    ],
+    "shelfmark": [
+        {
+            "name": "Inizia con",
+            "operator": "sw"
+        },
+        {
+            "name": "Termina con",
+            "operator": "ew"
+        },
+        {
+            "name": "Contiene",
+            "operator": "ct"
+        },
+        {
+            "name": "Uguale a",
+            "operator": "eq"
+        },
+        {
+            "name": "Non inizia con",
+            "operator": "nsw"
+        },
+        {
+            "name": "Non termina con",
+            "operator": "new"
+        },
+        {
+            "name": "Non contiene",
+            "operator": "nct"
+        },
+        {
+            "name": "Non uguale a",
+            "operator": "neq"
+        }
+    ],
+    "transcription": [
+        {
+            "name": "Inizia con",
+            "operator": "sw"
+        },
+        {
+            "name": "Termina con",
+            "operator": "ew"
+        },
+        {
+            "name": "Contiene",
+            "operator": "ct"
+        },
+        {
+            "name": "Uguale a",
+            "operator": "eq"
+        },
+        {
+            "name": "Non inizia con",
+            "operator": "nsw"
+        },
+        {
+            "name": "Non termina con",
+            "operator": "new"
+        },
+        {
+            "name": "Non contiene",
+            "operator": "nct"
+        },
+        {
+            "name": "Non uguale a",
+            "operator": "neq"
+        }
+    ],
+    "type": [
+        {
+            "name": "Inizia con",
+            "operator": "sw"
+        },
+        {
+            "name": "Termina con",
+            "operator": "ew"
+        },
+        {
+            "name": "Contiene",
+            "operator": "ct"
+        },
+        {
+            "name": "Uguale a",
+            "operator": "eq"
+        },
+        {
+            "name": "Non inizia con",
+            "operator": "nsw"
+        },
+        {
+            "name": "Non termina con",
+            "operator": "new"
+        },
+        {
+            "name": "Non contiene",
+            "operator": "nct"
+        },
+        {
+            "name": "Non uguale a",
+            "operator": "neq"
+        }
+    ]
+}

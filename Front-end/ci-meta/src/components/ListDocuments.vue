@@ -20,13 +20,10 @@
       <b-thead>
         <b-tr>
           <b-th>Id</b-th>
-          <b-th>Type</b-th>
-          <b-th>Collection</b-th>
-          <b-th>Folder</b-th>
+          <b-th>Doc Type</b-th>
+          <b-th>Real Id</b-th>
           <b-th>Gregorian Date</b-th>
-          <b-th>Shelfmark</b-th>
           <b-th>Incipit</b-th>
-          <b-th>Language</b-th>
           <b-th>Note</b-th>
         </b-tr>
       </b-thead>
@@ -37,13 +34,10 @@
                 {{ids[index]}}
           </b-button>
         </b-td>
-        <b-td>{{doc.type}}</b-td>
-        <b-td>{{doc.collection}}</b-td>
-        <b-td>{{doc.folder}} - {{doc.folder_number}}</b-td>
+        <b-td>{{doc.type}}</b-td> 
+        <b-td>{{doc.collection}} {{doc.folder}} - {{doc.folder_number}} {{doc.shelfmark}}</b-td>
         <b-td>{{doc.gregorian_date}}</b-td>
-        <b-td>{{doc.shelfmark}}</b-td>
         <b-td>{{doc.incipit}}</b-td>
-        <b-td>{{doc.language}}</b-td>
         <b-td>{{doc.note}}</b-td>
       </b-tr>
 
