@@ -21,7 +21,7 @@ def dateCheck( input ) :
 
     #Case NULL
     if input=="NULL" : 
-        return "1-1-0001"
+        return None
     #Case only year
     elif pattern_4digits.match( input ) :
         return "1-1"+input
@@ -33,7 +33,7 @@ def dateCheck( input ) :
             day="01"
         if month=="00" :
             month="01"
-        return month+"-"+day+"-"+year
+        return year+"-"+month+"-"+day
 
 
 def main():
@@ -51,7 +51,7 @@ def main():
             for index in range(size) :
                 value=row[index]
                 if not value :
-                    value="NULL"
+                    value=None
                 #value="'{}'".format(value)
                 record.append(value)
             record_list.append(record)

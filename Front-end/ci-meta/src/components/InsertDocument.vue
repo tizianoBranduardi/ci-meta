@@ -175,8 +175,8 @@
             <b-row>
               Sent to<br><b-form-select size="sm" v-model="placeTo" :options="places"/><br>
             </b-row>
-            <!-- Or<b-button variant="link" @click="createPlace=!createPlace">create a new place</b-button>
-            <insert-place v-show="createPlace"/> -->
+            Or<b-button variant="link" @click="createPlace=!createPlace">create a new place</b-button>
+            <insert-place v-show="createPlace"/>
           </b-card>
         </b-col>
       </b-row>
@@ -192,11 +192,11 @@
 </template>
 
 <script>
-
+import InsertPlace from './InsertPlace.vue';
 import InsertImage from './InsertImage.vue';
 export default ({
     name: 'insertDocument',
-    components: { InsertImage },
+    components: { InsertImage, InsertPlace },
     data(){
       return{
         documentType: '',
@@ -222,6 +222,7 @@ export default ({
         places: [],
         placeFrom: '',
         placeTo: '',
+        createPlace : false,
       }
     },
     async mounted(){

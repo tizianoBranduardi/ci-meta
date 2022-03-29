@@ -14,11 +14,20 @@ SECRET_KEY = "\2\1thisismyscretkey\1\2\e\y\y\h"
 
 # The SQLAlchemy connection string.
 db_dialect="postgresql"
+db_user="cimeta"
+db_pw="c1_meT%40_doyourdo"
+db_host="localhost"
+db_port="5432"
+db_name="cimeta"
+
+"""
+db_dialect="postgresql"
 db_user="postgres"
 db_pw="postgres"
 db_host="db"
 db_port="5432"
 db_name="cimento"
+"""
 
 SQLALCHEMY_DATABASE_URI=db_dialect+"://"+db_user+":"+db_pw+"@"+db_host+":"+db_port+"/"+db_name
 

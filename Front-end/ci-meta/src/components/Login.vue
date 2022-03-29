@@ -46,7 +46,7 @@
         error: false,
         uname: '',
         pw: '',
-        address: 'localhost/back-end',
+        address: '172.20.27.81:8080/back-end',
         timeout: false,
         docker: false,
       };
